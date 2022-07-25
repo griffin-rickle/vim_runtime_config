@@ -1,0 +1,10 @@
+git@github.com:dense-analysis/ale.git
+git@github.com:jmcantrell/vim-virtualenv.git
+git@github.com:junegunn/fzf.git
+git@github.com:junegunn/fzf.vim.git
+git@github.com:junegunn/gv.vim.git
+git@github.com:niklasl/vim-rdf.git
+git@github.com:puremourning/vimspector.git
+https://github.com/amix/vimrc.git
+https://github.com/python-mode/python-mode.git
+https://github.com/rvesse/vim-sparql
