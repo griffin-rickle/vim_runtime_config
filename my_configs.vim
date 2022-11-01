@@ -5,7 +5,6 @@ set hlsearch
 set ignorecase
 set incsearch
 set cursorline
-set cursorcolumn
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -23,7 +22,9 @@ source ~/git/vim-rdf/syntax/n3.vim
 source ~/git/vim-rdf/syntax/turtle.vim
 
 let g:NERDTreeWinPos = "left"
-autocmd VimEnter * NERDTree
+autocmd StdinReadPre * let g:isReadingFromStdin = 1
+autocmd VimEnter * if !argc() && !exists('g:isReadingFromStdin') | NERDTree | endif
+
 set nofoldenable
 
 let g:vimspector_base_dir=expand( '$HOME/.vim_runtime/my_plugins/vimspector' )
@@ -40,8 +41,13 @@ nmap <Leader>dk <Plug>VimspectorRestart
 nmap <Leader>dh <Plug>VimspectorStepOut
 nmap <Leader>dl <Plug>VimspectorStepInto
 nmap <Leader>dj <Plug>VimspectorStepOver
+nmap <Leader>di <Plug>VimspectorBaloonEval
 
 nmap <Leader>p <Nop>
+
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vi :VimuxInspectRunner<CR>
 
 let g:ale_linters = {
     \   'python': ['flake8', 'plint'],
@@ -64,4 +70,8 @@ nnoremap <silent> <C-g>g :call FZFOpen(':Ag')<CR>
 nnoremap <silent> <C-g>c :call FZFOpen(':Commands')<CR>
 nnoremap <silent> <C-g>l :call FZFOpen(':BLines')<CR>
 nnoremap <silent> <C-p> :call FZFOpen(':Files')<CR>
-colo slate
+syntax on
+
+autocmd BufNewFile,BufRead *.sq set syntax=sparql
+
+colorscheme onedark
